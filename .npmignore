@@ -1,4 +1,14 @@
 node_modules/
-
+example/
 src/
-dist/
+.gitignore
+.npmignore
+.npmrc
+api-extractor.json
+rollup.config.js
+
+shims-vue.d.ts
+
+vue.config.js
+
+tsconfig.json
