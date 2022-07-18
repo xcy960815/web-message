@@ -1,0 +1,50 @@
+{
+    "name": "web-message",
+    "version": "0.0.1",
+    "description": "用js仿照element-ui创建的message组件,组件超级轻量。",
+    "main": "dist/web-message.umd.js",
+    "module": "dist/web-message.esm.js",
+    "typings": "./dist/typing/web-message.d.ts",
+    "scripts": {
+        "dev": "NODE_ENV=development rollup -c -w",
+        "build": "NODE_ENV=production rollup -c && api-extractor run && rm -rf ./temp",
+        "link": "npm link && npm link web-message",
+        "serve": "vue-cli-service serve"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ChongYu-Yease/rollup-ts-template.git"
+    },
+    "author": {
+        "name": "xuchongyu",
+        "email": "18763006837@163.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ChongYu-Yease/rollup-ts-template/issues"
+    },
+    "types": "dist/typing/index.d.ts",
+    "homepage": "https://github.com/ChongYu-Yease/rollup-ts-template#readme",
+    "devDependencies": {
+        "@babel/core": "^7.12.3",
+        "@rollup/plugin-babel": "^5.3.1",
+        "@rollup/plugin-commonjs": "^16.0.0",
+        "@rollup/plugin-node-resolve": "^10.0.0",
+        "@vue/cli-plugin-typescript": "~5.0.0",
+        "@vue/cli-service": "^5.0.6",
+        "autoprefixer": "^10.4.7",
+        "less": "^4.1.3",
+        "less-loader": "^11.0.0",
+        "rollup": "^2.33.1",
+        "rollup-plugin-babel": "^4.4.0",
+        "rollup-plugin-delete": "^2.0.0",
+        "rollup-plugin-livereload": "^2.0.0",
+        "rollup-plugin-postcss": "^4.0.2",
+        "rollup-plugin-serve": "^1.1.0",
+        "rollup-plugin-terser": "^7.0.2",
+        "rollup-plugin-typescript2": "^0.30.0",
+        "tslib": "^2.0.3",
+        "typescript": "~4.5.5",
+        "vue": "3.2.13"
+    }
+}
