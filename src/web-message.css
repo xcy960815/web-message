@@ -1,21 +1,22 @@
 /* message组件样式 */
 .web-message {
     min-width: 380px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ebeef5;
+    border: 1px solid #ebeef5;
     background-color: #edf2fc;
     transform: translateX(-50%);
     position: fixed;
     left: 50%;
-    top: 20px;
-    transition: opacity 0.3s, transform 0.4s, top 0.4s;
-    /* transition: opacity 3s, transform 4s, top 4s; */
+    transition: opacity 0.4s, transform 0.4s, top 0.4s;
     padding: 15px 15px 15px 20px;
     display: flex;
     align-items: center;
     border-radius: 4px;
     overflow: hidden;
+}
+
+.web-message_leave {
+    opacity: 0;
+    transform: translate(-50%, -100%);
 }
 
 /* .web-message_hover:hover {
@@ -34,6 +35,7 @@
     justify-content: flex-end;
 }
 
+/* 消息内容节点 */
 .web-message .web-message_content {
     margin-left: 20px;
     margin: 0;
@@ -51,16 +53,6 @@
     width: 12px;
     height: 12px;
     background-size: 100% 100%;
-}
-
-.web-message_leave {
-    opacity: 0;
-    transform: translate(-50%, -100%);
-}
-
-.web-message_enter {
-    opacity: 1;
-    transform: translate(-50%, -100%);
 }
 
 .web-message_info .web-message_content {

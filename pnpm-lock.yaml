@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': ^7.12.3
+  '@microsoft/api-extractor': ^7.28.3
   '@rollup/plugin-babel': ^5.3.1
   '@rollup/plugin-commonjs': ^16.0.0
   '@rollup/plugin-node-resolve': ^10.0.0
@@ -24,6 +25,7 @@ specifiers:
 
 devDependencies:
   '@babel/core': 7.18.6
+  '@microsoft/api-extractor': 7.28.4
   '@rollup/plugin-babel': 5.3.1_ayiqorrx7dutx4scyxuyyyvhga
   '@rollup/plugin-commonjs': 16.0.0_rollup@2.76.0
   '@rollup/plugin-node-resolve': 10.0.0_rollup@2.76.0
@@ -309,6 +311,45 @@ packages:
     resolution: {integrity: sha1-sqxibWy5yHGKtFkWbUu0Bbj/p4s=, tarball: '@leichtgewicht/ip-codec/download/@leichtgewicht/ip-codec-2.0.4.tgz'}
     dev: true
 
+  /@microsoft/api-extractor-model/7.21.0:
+    resolution: {integrity: sha1-IThoLnOKFAONQBZex3Ni5phT8gA=, tarball: '@microsoft/api-extractor-model/download/@microsoft/api-extractor-model-7.21.0.tgz'}
+    dependencies:
+      '@microsoft/tsdoc': 0.14.1
+      '@microsoft/tsdoc-config': 0.16.1
+      '@rushstack/node-core-library': 3.49.0
+    dev: true
+
+  /@microsoft/api-extractor/7.28.4:
+    resolution: {integrity: sha1-jmemnttJN77aUW1C1PMl5uElhEU=, tarball: '@microsoft/api-extractor/download/@microsoft/api-extractor-7.28.4.tgz'}
+    hasBin: true
+    dependencies:
+      '@microsoft/api-extractor-model': 7.21.0
+      '@microsoft/tsdoc': 0.14.1
+      '@microsoft/tsdoc-config': 0.16.1
+      '@rushstack/node-core-library': 3.49.0
+      '@rushstack/rig-package': 0.3.13
+      '@rushstack/ts-command-line': 4.12.1
+      colors: 1.2.5
+      lodash: 4.17.21
+      resolve: 1.17.0
+      semver: 7.3.7
+      source-map: 0.6.1
+      typescript: 4.6.4
+    dev: true
+
+  /@microsoft/tsdoc-config/0.16.1:
+    resolution: {integrity: sha1-TeEZdsEgKFTEYY82S/SZtL4z5lc=, tarball: '@microsoft/tsdoc-config/download/@microsoft/tsdoc-config-0.16.1.tgz'}
+    dependencies:
+      '@microsoft/tsdoc': 0.14.1
+      ajv: 6.12.6
+      jju: 1.4.0
+      resolve: 1.19.0
+    dev: true
+
+  /@microsoft/tsdoc/0.14.1:
+    resolution: {integrity: sha1-FV7yEGVCeQGZTnZdqKC6DqrouL0=, tarball: '@microsoft/tsdoc/download/@microsoft/tsdoc-0.14.1.tgz'}
+    dev: true
+
   /@node-ipc/js-queue/2.0.3:
     resolution: {integrity: sha1-rH/jPXZvpT4jPvj+2vNEOgHFpM0=, tarball: '@node-ipc/js-queue/download/@node-ipc/js-queue-2.0.3.tgz'}
     engines: {node: '>=1.0.0'}
@@ -409,6 +450,36 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /@rushstack/node-core-library/3.49.0:
+    resolution: {integrity: sha1-AyTBpbpeRplntw6XGNGpB1BkhQM=, tarball: '@rushstack/node-core-library/download/@rushstack/node-core-library-3.49.0.tgz'}
+    dependencies:
+      '@types/node': 12.20.24
+      colors: 1.2.5
+      fs-extra: 7.0.1
+      import-lazy: 4.0.0
+      jju: 1.4.0
+      resolve: 1.17.0
+      semver: 7.3.7
+      timsort: 0.3.0
+      z-schema: 5.0.3
+    dev: true
+
+  /@rushstack/rig-package/0.3.13:
+    resolution: {integrity: sha1-gNezS8m3p/7roTPzF9+NvR9lqCI=, tarball: '@rushstack/rig-package/download/@rushstack/rig-package-0.3.13.tgz'}
+    dependencies:
+      resolve: 1.17.0
+      strip-json-comments: 3.1.1
+    dev: true
+
+  /@rushstack/ts-command-line/4.12.1:
+    resolution: {integrity: sha1-RDf/rmRZ64h5FiWtnomy8LolRHY=, tarball: '@rushstack/ts-command-line/download/@rushstack/ts-command-line-4.12.1.tgz'}
+    dependencies:
+      '@types/argparse': 1.0.38
+      argparse: 1.0.10
+      colors: 1.2.5
+      string-argv: 0.3.1
+    dev: true
+
   /@sideway/address/4.1.3:
     resolution: {integrity: sha1-2TzOXUXF2uySrXbbSSzC7jxkqyc=, tarball: '@sideway/address/download/@sideway/address-4.1.3.tgz'}
     dependencies:
@@ -443,6 +514,10 @@ packages:
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha1-zMqrdYr1Z2Hre/N69vA/Mm3XmK0=, tarball: '@trysound/sax/download/@trysound/sax-0.2.0.tgz'}
     engines: {node: '>=10.13.0'}
+    dev: true
+
+  /@types/argparse/1.0.38:
+    resolution: {integrity: sha1-qB/YYG1IH4c6OADG665PHXaKVqk=, tarball: '@types/argparse/download/@types/argparse-1.0.38.tgz'}
     dev: true
 
   /@types/body-parser/1.19.2:
@@ -545,6 +620,10 @@ packages:
 
   /@types/minimist/1.2.2:
     resolution: {integrity: sha1-7nceK6Sz3Fs3KTXVSf2WF780W4w=, tarball: '@types/minimist/download/@types/minimist-1.2.2.tgz'}
+    dev: true
+
+  /@types/node/12.20.24:
+    resolution: {integrity: sha1-w3rGnLKUivtM75X0JPoAN5camlw=, tarball: '@types/node/download/@types/node-12.20.24.tgz'}
     dev: true
 
   /@types/node/18.0.4:
@@ -1246,6 +1325,12 @@ packages:
     resolution: {integrity: sha1-G8R4GPMFdk8jqzMGsL/AhsWinRE=, tarball: arch/download/arch-2.2.0.tgz}
     dev: true
 
+  /argparse/1.0.10:
+    resolution: {integrity: sha1-vNZ5HqWuCXJeF+WtmIE0zUCz2RE=, tarball: argparse/download/argparse-1.0.10.tgz}
+    dependencies:
+      sprintf-js: 1.0.3
+    dev: true
+
   /array-flatten/1.1.1:
     resolution: {integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=, tarball: array-flatten/download/array-flatten-1.1.1.tgz}
     dev: true
@@ -1621,6 +1706,11 @@ packages:
 
   /colorette/2.0.19:
     resolution: {integrity: sha1-zfBE9HrUGg9LVrOg1bTm4aLVp5g=, tarball: colorette/download/colorette-2.0.19.tgz}
+    dev: true
+
+  /colors/1.2.5:
+    resolution: {integrity: sha1-icetmjdLwDDfgBMkH2gTbtiDWvw=, tarball: colors/download/colors-1.2.5.tgz}
+    engines: {node: '>=0.1.90'}
     dev: true
 
   /commander/2.20.3:
@@ -2684,6 +2774,15 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
+  /fs-extra/7.0.1:
+    resolution: {integrity: sha1-TxicRKoSO4lfcigE9V6iPq3DSOk=, tarball: fs-extra/download/fs-extra-7.0.1.tgz}
+    engines: {node: '>=6 <7 || >=8'}
+    dependencies:
+      graceful-fs: 4.2.10
+      jsonfile: 4.0.0
+      universalify: 0.1.2
+    dev: true
+
   /fs-extra/8.1.0:
     resolution: {integrity: sha1-SdQ8RaiM2Wd2aMt74bRu/bjS4cA=, tarball: fs-extra/download/fs-extra-8.1.0.tgz}
     engines: {node: '>=6 <7 || >=8'}
@@ -3070,6 +3169,11 @@ packages:
       resolve-from: 5.0.0
     dev: true
 
+  /import-lazy/4.0.0:
+    resolution: {integrity: sha1-6OtidIOgpD2jwD8+NVSL5csMwVM=, tarball: import-lazy/download/import-lazy-4.0.0.tgz}
+    engines: {node: '>=8'}
+    dev: true
+
   /indent-string/4.0.0:
     resolution: {integrity: sha1-Yk+PRJfWGbLZdoUx1Y9BIoVNclE=, tarball: indent-string/download/indent-string-4.0.0.tgz}
     engines: {node: '>=8'}
@@ -3259,6 +3363,10 @@ packages:
       '@types/node': 18.0.4
       merge-stream: 2.0.0
       supports-color: 8.1.1
+    dev: true
+
+  /jju/1.4.0:
+    resolution: {integrity: sha1-o6vicYryQaKykE+EpiWXDzia4yo=, tarball: jju/download/jju-1.4.0.tgz}
     dev: true
 
   /joi/17.6.0:
@@ -3451,6 +3559,14 @@ packages:
 
   /lodash.defaultsdeep/4.6.1:
     resolution: {integrity: sha1-US6b1yHSctlOPTpjZT+hdRZ0HKY=, tarball: lodash.defaultsdeep/download/lodash.defaultsdeep-4.6.1.tgz}
+    dev: true
+
+  /lodash.get/4.4.2:
+    resolution: {integrity: sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=, tarball: lodash.get/download/lodash.get-4.4.2.tgz}
+    dev: true
+
+  /lodash.isequal/4.5.0:
+    resolution: {integrity: sha1-QVxEePK8wwEgwizhDtMib30+GOA=, tarball: lodash.isequal/download/lodash.isequal-4.5.0.tgz}
     dev: true
 
   /lodash.mapvalues/4.6.0:
@@ -4924,6 +5040,19 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /resolve/1.17.0:
+    resolution: {integrity: sha1-sllBtUloIxzC0bt2p5y38sC/hEQ=, tarball: resolve/download/resolve-1.17.0.tgz}
+    dependencies:
+      path-parse: 1.0.7
+    dev: true
+
+  /resolve/1.19.0:
+    resolution: {integrity: sha1-GvW/YwQJc0oGfK4pMYqsf6KaJnw=, tarball: resolve/download/resolve-1.19.0.tgz}
+    dependencies:
+      is-core-module: 2.9.0
+      path-parse: 1.0.7
+    dev: true
+
   /resolve/1.20.0:
     resolution: {integrity: sha1-YpoBP7P3B1XW8LeTXMHCxTeLGXU=, tarball: resolve/download/resolve-1.20.0.tgz}
     dependencies:
@@ -5373,6 +5502,10 @@ packages:
       - supports-color
     dev: true
 
+  /sprintf-js/1.0.3:
+    resolution: {integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=, tarball: sprintf-js/download/sprintf-js-1.0.3.tgz}
+    dev: true
+
   /ssri/8.0.1:
     resolution: {integrity: sha1-Y45OQ54v+9LNKJd21cpFfE9Roq8=, tarball: ssri/download/ssri-8.0.1.tgz}
     engines: {node: '>= 8'}
@@ -5396,6 +5529,11 @@ packages:
   /statuses/2.0.1:
     resolution: {integrity: sha1-VcsADM8dSHKL0jxoWgY5mM8aG2M=, tarball: statuses/download/statuses-2.0.1.tgz}
     engines: {node: '>= 0.8'}
+    dev: true
+
+  /string-argv/0.3.1:
+    resolution: {integrity: sha1-leL77AQnrhkYSTX4FtdKqkxcGdo=, tarball: string-argv/download/string-argv-0.3.1.tgz}
+    engines: {node: '>=0.6.19'}
     dev: true
 
   /string-hash/1.1.3:
@@ -5458,6 +5596,11 @@ packages:
   /strip-indent/2.0.0:
     resolution: {integrity: sha1-XvjbKV0B5u1sv3qrlpmNeCJSe2g=, tarball: strip-indent/download/strip-indent-2.0.0.tgz}
     engines: {node: '>=4'}
+    dev: true
+
+  /strip-json-comments/3.1.1:
+    resolution: {integrity: sha1-MfEoGzgyYwQ0gxwxDAHMzajL4AY=, tarball: strip-json-comments/download/strip-json-comments-3.1.1.tgz}
+    engines: {node: '>=8'}
     dev: true
 
   /style-inject/0.3.0:
@@ -5601,6 +5744,10 @@ packages:
     resolution: {integrity: sha1-Wrr3FKlAXbBQRzK7zNLO3Z75U30=, tarball: thunky/download/thunky-1.1.0.tgz}
     dev: true
 
+  /timsort/0.3.0:
+    resolution: {integrity: sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=, tarball: timsort/download/timsort-0.3.0.tgz}
+    dev: true
+
   /to-fast-properties/2.0.0:
     resolution: {integrity: sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=, tarball: to-fast-properties/download/to-fast-properties-2.0.0.tgz}
     engines: {node: '>=4'}
@@ -5674,6 +5821,12 @@ packages:
     hasBin: true
     dev: true
 
+  /typescript/4.6.4:
+    resolution: {integrity: sha1-yqeLvDpZ5qXFENNXA/agmHfORek=, tarball: typescript/download/typescript-4.6.4.tgz}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
   /universalify/0.1.2:
     resolution: {integrity: sha1-tkb2m+OULavOzJ1mOcgNwQXvqmY=, tarball: universalify/download/universalify-0.1.2.tgz}
     engines: {node: '>= 4.0.0'}
@@ -5729,6 +5882,11 @@ packages:
     dependencies:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
+    dev: true
+
+  /validator/13.7.0:
+    resolution: {integrity: sha1-T5ZYuhO6jz2C7ogdNRZInqhcCFc=, tarball: validator/download/validator-13.7.0.tgz}
+    engines: {node: '>= 0.10'}
     dev: true
 
   /vary/1.1.2:
@@ -6157,4 +6315,16 @@ packages:
       is-ci: 1.2.1
       normalize-path: 1.0.0
       strip-indent: 2.0.0
+    dev: true
+
+  /z-schema/5.0.3:
+    resolution: {integrity: sha1-aPr7m3Nfx/PInquz5aY1O017STU=, tarball: z-schema/download/z-schema-5.0.3.tgz}
+    engines: {node: '>=8.0.0'}
+    hasBin: true
+    dependencies:
+      lodash.get: 4.4.2
+      lodash.isequal: 4.5.0
+      validator: 13.7.0
+    optionalDependencies:
+      commander: 2.20.3
     dev: true
