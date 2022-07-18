@@ -198,7 +198,7 @@ export class Message {
                 this.updateMessageDomStyle(startIndex)
                 // 移除节点
                 this.removeMessage(messageboxDom, startIndex)
-                console.log('剩余的消息队列', this.messageQueue);
+                // console.log('剩余的消息队列', this.messageQueue);
 
             }, messageOptions.messageDuration || 2000)
 
