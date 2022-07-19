@@ -85,8 +85,8 @@ export declare interface MessageOptions {
     messageType?: MessageType;
     messagePosition?: MessagePosition;
     messageDuration?: MessageDuration;
+    messageHoverStop?: boolean;
     showClose?: boolean;
-    hoverStop?: boolean;
 }
 
 export declare type MessagePosition = 'left' | "center" | 'right' | undefined;

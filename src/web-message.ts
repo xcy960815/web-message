@@ -8,8 +8,9 @@ export interface MessageOptions {
     messageType?: MessageType
     messagePosition?: MessagePosition
     messageDuration?: MessageDuration
+    messageHoverStop?: boolean
     showClose?: boolean;
-    hoverStop?: boolean
+
 }
 
 interface MessageQueueOption {
@@ -149,7 +150,7 @@ export class Message {
 
 
         // 为外层message节点添加事件
-        messageOptions.hoverStop &&
+        messageOptions.messageHoverStop &&
             this.addEventForMessageDom(messageboxDom, messageOptions)
 
         return messageboxDom
