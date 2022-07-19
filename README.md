@@ -36,9 +36,10 @@ const messageInstance = new Message()
 // 创建一条消息
 const createMessage = (messageType: MessageType, message: string, messageDuration?: MessageDuration) => {
   messageInstance.createMessage({
-    message,
-    messageType,
-    messageDuration
+    message, // 要展示的消息 默认为 ""
+    messageType, // 消息类型  默认为 "info"
+    messageDuration, // 消息存在的时间 默认为 2000毫秒
+    hoverStop: true // 鼠标hover上去是否停留在页面上 默认为 false 
   })
 }
 // 创建多条消息

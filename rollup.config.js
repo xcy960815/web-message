@@ -12,6 +12,7 @@ import del from 'rollup-plugin-delete' //
 import commonjs from '@rollup/plugin-commonjs' //将CommonJS模块转换为ES6, 方便rollup直接调用
 import livereload from 'rollup-plugin-livereload'
 
+const bundleSize = require('rollup-plugin-bundle-size');
 const isProduction = process.env.NODE_ENV === 'production'
 
 export default {
@@ -52,5 +53,7 @@ export default {
             useTsconfigDeclarationDir: true,
             extensions: ['.js', '.ts', '.tsx'],
         }),
+
+        bundleSize()
     ],
 }

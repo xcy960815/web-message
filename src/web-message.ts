@@ -9,13 +9,13 @@ export interface MessageOptions {
     messagePosition?: MessagePosition
     messageDuration?: MessageDuration
     showClose?: boolean;
+    hoverStop?: boolean
 }
 
 interface MessageQueueOption {
     messageboxDom: HTMLDivElement;
     id: number,
-    timeId: number,
-
+    // timeId: number,
 }
 export class Message {
     // 消息队列
@@ -65,13 +65,30 @@ export class Message {
     }
 
     /**
-     * @desc 校验message配置 不符合要求 不会生成message组件
+     * @desc 校验message配置 兼容不不符合要求的配置
      * @param {MessageOptions} messageOptions 
-     * @returns boolean
+     * @returns {MessageOptions}
      */
-    private checkMessageOptions(messageOptions: MessageOptions): boolean {
-        // 没有基本的message配置 不生成消息节点
-        return typeof messageOptions !== 'object' || messageOptions === null || messageOptions === undefined || !messageOptions.message
+    private checkMessageOptions(messageOptions: MessageOptions): MessageOptions {
+
+        return {
+            ...messageOptions,
+            message: messageOptions.message ? messageOptions.message : "",
+            messageType: messageOptions.messageType ? messageOptions.messageType : "info",
+            messagePosition: messageOptions.messagePosition ? messageOptions.messagePosition : "left",
+            messageDuration: messageOptions.messageDuration ? messageOptions.messageDuration : 2000,
+        }
+    }
+
+    private createButtonDom(messageboxDom: HTMLDivElement) {
+
+        const i = document.createElement('i')
+        i.classList.add('close-button')
+        i?.addEventListener('click', () => {
+            this.updateMessageQueue(messageboxDom, this.id)
+            if (this.id > 0) window.clearTimeout(this.timeId)
+        })
+        messageboxDom.appendChild(i)
     }
 
     /**
@@ -101,8 +118,8 @@ export class Message {
         // 创建节点
         const messageboxDom = document.createElement('div')
 
-        // 创建 message 文本节点
-        this.createMessageContentDom(messageboxDom, messageOptions)
+        // 为 message 节点设置 id 属性
+        this.setDomAttribute(messageboxDom, "web-message-id", JSON.stringify(this.id))
 
         // 基本class
         messageboxDom.classList.add('web-message')
@@ -113,11 +130,14 @@ export class Message {
         // message 内容 位置 class
         messageboxDom.classList.add(`web-message_${messageOptions.messagePosition || "left"}`)
 
-        // message节点 样式 
+        // message节点 样式 class
         messageboxDom.classList.add(`web-message_${messageOptions.messageType ? messageOptions.messageType : 'info'}`)
 
-        // 为 message 节点设置唯一标志属性
-        this.setDomAttribute(messageboxDom, "web-message-id", JSON.stringify(this.id))
+        // 创建 message 文本节点
+        this.createMessageContentDom(messageboxDom, messageOptions)
+
+        // 创建是否可以关闭节点
+        messageOptions.showClose === true && this.createButtonDom(messageboxDom)
 
         // 设置当前 message 节点的 zIndex、top
         this.setCurrentMessageboxDomStyle(messageboxDom)
@@ -127,8 +147,10 @@ export class Message {
             messageboxDom.classList.remove('web-message_leave')
         }, 100)
 
+
         // 为外层message节点添加事件
-        this.addEventForMessageDom(messageboxDom, messageOptions)
+        messageOptions.hoverStop &&
+            this.addEventForMessageDom(messageboxDom, messageOptions)
 
         return messageboxDom
     }
@@ -140,39 +162,34 @@ export class Message {
      */
     private addEventForMessageDom(messageboxDom: HTMLDivElement, messageOptions: MessageOptions): void {
 
-
         // 给节点添加鼠标划入的事件
         messageboxDom.addEventListener("mouseenter", (_event: MouseEvent) => {
-            // 修改当前message节点在message队列里面的属性
-            const id = Number(this.getDomAttribute(_event.target as HTMLDivElement, "web-message-id"))
-            const currentMessageQueueIndex = this.messageQueue.findIndex((messageQueueOption: MessageQueueOption) => messageQueueOption.id === id)
-            const currentMessageQueueOption = this.messageQueue.find((messageQueueOption: MessageQueueOption) => messageQueueOption.id === id)!
-            try {
-                // 清除执行删除操作的定时器
-                window.clearTimeout(currentMessageQueueOption.timeId)
-            } catch (error) {
-                // console.log("currentMessageQueueOption", currentMessageQueueOption, JSON.parse(JSON.stringify(this.messageQueue)), id);
-            }
-            this.messageQueue.splice(currentMessageQueueIndex, 1, { ...currentMessageQueueOption, timeId: 0 })
-            // console.log("鼠标划入的时候的消息队列", JSON.parse(JSON.stringify(this.messageQueue)));
+            // 获取当前message组件所对应的延时器id
+            const timeId = Number(this.getDomAttribute(messageboxDom, "web-message-timeid"))
+            // 清空默认添加的延时器
+            window.clearTimeout(timeId)
+            this.setDomAttribute(messageboxDom, "web-message-timeid", "0")
         })
 
 
         // 给节点添加鼠标划出的事件
         messageboxDom.addEventListener("mouseleave", (_event: MouseEvent) => {
-            const id = Number(this.getDomAttribute(_event.target as HTMLDivElement, "web-message-id"))
-            const currentMessageQueueOption = this.messageQueue.find((messageQueueOption: MessageQueueOption) => messageQueueOption.id === id)!
-            const currentMessageQueueIndex = this.messageQueue.findIndex((messageQueueOption: MessageQueueOption) => messageQueueOption.id === id)
-
+            const id = Number(this.getDomAttribute(messageboxDom, "web-message-id"))
+            const currentMessageQueueIndex: number = this.messageQueue.findIndex((messageQueueOption: MessageQueueOption) => messageQueueOption.id === id)
             // 鼠标划出继续移除message节点
             const timeId = window.setTimeout(() => {
+
                 // 更新样式
-                // this.updateMessageDomStyle(currentMessageQueueIndex)
-                this.removeMessage(messageboxDom, currentMessageQueueIndex)
+                this.updateMessageDomStyle(messageboxDom, currentMessageQueueIndex)
+
+                // 销毁当前的message节点
+                this.updateMessageQueue(messageboxDom, currentMessageQueueIndex)
+
             }, messageOptions.messageDuration || 2000)
-            this.messageQueue.splice(currentMessageQueueIndex, 1, { ...currentMessageQueueOption, timeId })
-            // console.log("鼠标划出的时候的消息队列", JSON.parse(JSON.stringify(this.messageQueue)));
+
+            this.setDomAttribute(messageboxDom, "web-message-timeid", JSON.stringify(timeId))
         })
+
     }
 
 
@@ -183,48 +200,41 @@ export class Message {
      */
     public createMessage(messageOptions: MessageOptions): void {
 
-        if (this.checkMessageOptions(messageOptions)) return
+        messageOptions = this.checkMessageOptions(messageOptions)
+
+        // 先执行++操作
+        this.id++
 
         // 创建message组件最外层的节点
         const messageboxDom = this.createMessageboxDom(messageOptions)
 
-        // 定时移除 message 节点 messageOptions.messageDuration 为 0 代表不移除 message 节点
         if (messageOptions.messageDuration !== 0) {
 
-            this.timeId = window.setTimeout(() => {
+            // 定时移除 message 节点 messageOptions.messageDuration 为 0 代表不移除 message 节点
+
+            const timeId = window.setTimeout(() => {
+
                 // 查找要开始操作的下标
-                const startIndex = this.messageQueue.findIndex((messageQueueOption: MessageQueueOption) => messageQueueOption.id === currentId)
+                const startIndex = this.messageQueue.findIndex((messageQueueOption: MessageQueueOption) => messageQueueOption.id === this.id)
+
                 // 更新样式
-                this.updateMessageDomStyle(startIndex)
+                this.updateMessageDomStyle(messageboxDom, startIndex)
+
                 // 移除节点
-                this.removeMessage(messageboxDom, startIndex)
-                // console.log('剩余的消息队列', this.messageQueue);
+                this.updateMessageQueue(messageboxDom, startIndex)
 
             }, messageOptions.messageDuration || 2000)
 
+            this.setDomAttribute(messageboxDom, "web-message-timeid", JSON.stringify(timeId))
+
         }
 
-        // 记录当前id 避免执行异步操作 造成 id 不准确的问题
-        const currentId = this.id
 
         // 向消息队列当中添加消息数据
-        this.messageQueue.push({ id: currentId, messageboxDom, timeId: this.timeId })
-
-
-        if (messageOptions.showClose === true) {
-            const i = document.createElement('i')
-            i.classList.add('close-button')
-            i?.addEventListener('click', () => {
-                this.removeMessage(messageboxDom, currentId)
-                if (this.id > 0) window.clearTimeout(this.timeId)
-            })
-            messageboxDom.appendChild(i)
-        }
+        this.messageQueue.push({ id: this.id, messageboxDom })
 
         // 将 message 节点添加到 body 当中
         this.bodyElement?.appendChild(messageboxDom)
-
-        this.id++
     }
 
     /**
@@ -232,11 +242,15 @@ export class Message {
      * @param {number} startIndex 
      * @returns void
      */
-    private updateMessageDomStyle(startIndex: number): void {
+    private updateMessageDomStyle(messageboxDom: HTMLDivElement, startIndex: number): void {
+
+        // 增加移除动画
+        messageboxDom.classList.add('web-message_leave')
         for (let index = startIndex; index < this.messageQueue.length; index++) {
             const messageQueueOption: MessageQueueOption = this.messageQueue[index]
             if (messageQueueOption) {
-                if (messageQueueOption.timeId === 0) continue
+                const timeId = Number(this.getDomAttribute(messageQueueOption.messageboxDom, "web-message-timeid"))
+                if (timeId === 0) continue
                 const messageboxDom = messageQueueOption.messageboxDom
                 // messageboxDom.style.zIndex = `${this.maxZindex + i}`
                 // 换行后获取上一个元素的height和top来更新下一个元素的top
@@ -276,21 +290,19 @@ export class Message {
      * @param {number} targetId 
      * @returns void
      */
-    private removeMessage(messageboxDom: HTMLDivElement, startIndex: number): void {
-        // 增加移除动画
-        messageboxDom.classList.add('web-message_leave')
-
-        // 从消息队列中删掉
-        this.messageQueue.splice(startIndex, 1)
-
-        // 从body当中移除掉 这里的400毫秒和css样式的0.4s 相对应
+    private updateMessageQueue(messageboxDom: HTMLDivElement, startIndex: number,): void {
+        if (startIndex === -1) {
+            this.messageQueue.length = 0
+        } else {
+            // 从消息队列中删掉
+            this.messageQueue.splice(startIndex, 1)
+        }
+        // 从body当中移除掉 这里的400毫秒和css样式的 0.4s 相对应
         setTimeout(() => {
             // contains 方法用来判断当前节点中是否包含 某个节点 
             if (this.bodyElement?.contains(messageboxDom))
                 this.bodyElement?.removeChild(messageboxDom)
-        }, 500)
+        }, 400)
 
     }
-
-
 }

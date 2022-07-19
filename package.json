@@ -1,6 +1,6 @@
 {
     "name": "web-message",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "用js仿照element-ui创建的message组件,组件超级轻量.",
     "main": "dist/web-message.umd.js",
     "module": "dist/web-message.esm.js",
@@ -15,6 +15,8 @@
         "message",
         "js-message",
         "message",
+        "web",
+        "web-message"
     ],
     "repository": {
         "type": "git",
@@ -42,6 +44,7 @@
         "less-loader": "^11.0.0",
         "rollup": "^2.33.1",
         "rollup-plugin-babel": "^4.4.0",
+        "rollup-plugin-bundle-size": "^1.0.3",
         "rollup-plugin-delete": "^2.0.0",
         "rollup-plugin-livereload": "^2.0.0",
         "rollup-plugin-postcss": "^4.0.2",

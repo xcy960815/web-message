@@ -25,11 +25,12 @@ export declare class Message {
      */
     private getDomAttribute;
     /**
-     * @desc 校验message配置 不符合要求 不会生成message组件
+     * @desc 校验message配置 兼容不不符合要求的配置
      * @param {MessageOptions} messageOptions
-     * @returns boolean
+     * @returns {MessageOptions}
      */
     private checkMessageOptions;
+    private createButtonDom;
     /**
      * @desc 创建 message 文本内容节点
      * @param { HTMLDivElement } messageboxDom
@@ -74,7 +75,7 @@ export declare class Message {
      * @param {number} targetId
      * @returns void
      */
-    private removeMessage;
+    private updateMessageQueue;
 }
 
 export declare type MessageDuration = number;
@@ -85,6 +86,7 @@ export declare interface MessageOptions {
     messagePosition?: MessagePosition;
     messageDuration?: MessageDuration;
     showClose?: boolean;
+    hoverStop?: boolean;
 }
 
 export declare type MessagePosition = 'left' | "center" | 'right' | undefined;
