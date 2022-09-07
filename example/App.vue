@@ -2,10 +2,11 @@
   <div class='web-message-demo'>
     <h3>web-message-demo</h3>
     <div class="web-message-box">
-      <button class="web-message-button" @click="createMessage('info', '创建一条默认消息', 1000)">创建一条默认消息</button>
-      <button class="web-message-button" @click="createMessage('success', '创建一条成功消息', 1000)">创建一条成功消息</button>
-      <button class="web-message-button" @click="createMessage('warning', '创建一条警告消息', 1000)">创建一条警告消息</button>
-      <button class="web-message-button" @click="createMessage('error', '创建一条错误消息', 1000)">创建一条错误消息</button>
+      <button class="web-message-button" @click="createMessage('info', newLineMessage, 1000)">创建一条换行消息</button>
+      <button class="web-message-button" @click="createMessage('info', defaultMessage, 1000)">创建一条默认消息</button>
+      <button class="web-message-button" @click="createMessage('success', successMessage, 1000)">创建一条成功消息</button>
+      <button class="web-message-button" @click="createMessage('warning', warningMessage, 1000)">创建一条警告消息</button>
+      <button class="web-message-button" @click="createMessage('error', errorMessage, 1000)">创建一条错误消息</button>
       <button class="web-message-button" @click="createSomeMessage">创建一条默认消息和一条成功消息</button>
       <button class="web-message-button" @click="createmanyLinesMessage">创建多条消息</button>
     </div>
@@ -15,7 +16,11 @@
 <script lang='ts' setup>
 import { Message, MessageType, MessageDuration } from "web-message"
 const messageInstance = new Message()
-
+const newLineMessage = "创建一条换行消息\n"
+const defaultMessage = `创建一条默认消息`
+const successMessage = '创建一条成功消息'
+const warningMessage = "创建一条警告消息"
+const errorMessage = "创建一条错误消息"
 // 创建一条消息
 const createMessage = (messageType: MessageType, message: string, messageDuration?: MessageDuration) => {
   messageInstance.createMessage({
@@ -32,10 +37,10 @@ const createSomeMessage = () => {
 }
 // 创建多条消息
 const createmanyLinesMessage = () => {
-  createMessage('info', '创建一条默认消息', 1000)
-  createMessage('success', '创建一条成功消息', 1000)
-  createMessage('warning', '创建一条警告消息', 1000)
-  createMessage('error', '创建一条错误消息', 1000)
+  createMessage('info', defaultMessage, 1000)
+  createMessage('success', successMessage, 1000)
+  createMessage('warning', warningMessage, 1000)
+  createMessage('error', errorMessage, 1000)
   createMessage('info', '创建一条默认消息', 1000)
   createMessage('success', '创建一条成功消息', 1000)
   createMessage('warning', '创建一条警告消息', 1000)

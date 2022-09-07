@@ -1,12 +1,13 @@
 node_modules/
 example/
+/DS_Store
 src/
 .gitignore
 .npmignore
 .npmrc
 api-extractor.json
 rollup.config.js
-
+pnpm-lock.yaml
 shims-vue.d.ts
 
 vue.config.js
