@@ -104,6 +104,8 @@ export class Message {
 
         messageContentDom.classList.add('web-message_content')
 
+        console.log("message", JSON.stringify(messageOption.message));
+
         messageContentDom.textContent = messageOption.message!
 
         messageboxDom.appendChild(messageContentDom)
