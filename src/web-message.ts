@@ -30,11 +30,21 @@ export class Message {
 
     private timeId: number = 0
 
+    static instance: Message
+
     constructor() {
         // 不使用 window.onload 会只查找 原生节点里面的 z-index
         window.onload = () => {
             this.maxZindex = this.getMaxZIndex()
         }
+    }
+
+    // 单例模式
+    static getInstance(): Message {
+        if (!Message.instance) {
+            Message.instance = new Message()
+        }
+        return Message.instance
     }
 
     /** 

@@ -4,7 +4,9 @@ export declare class Message {
     private id;
     private maxZindex;
     private timeId;
+    static instance: Message;
     constructor();
+    static getInstance(): Message;
     /**
      * @desc 获取当前页面最大z-index元素值
      * @returns {number}
