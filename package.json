@@ -1,6 +1,6 @@
 {
     "name": "web-message",
-    "version": "0.0.9",
+    "version": "0.1.0",
     "description": "用js仿照element-ui创建的message组件,组件超级轻量.",
     "main": "dist/web-message.umd.js",
     "module": "dist/web-message.esm.js",
@@ -54,6 +54,7 @@
         "rollup-plugin-typescript2": "^0.30.0",
         "tslib": "^2.0.3",
         "typescript": "~4.5.5",
-        "vue": "3.2.13"
+        "vue": "3.2.13",
+        "yallist": "^4.0.0"
     }
 }

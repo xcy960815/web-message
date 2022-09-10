@@ -4,7 +4,7 @@
     <div class="web-message-box">
       <button
         class="web-message-button"
-        @click="createMessage('info', newLineMessage, 1000)"
+        @click="createMessage('info', newLineMessage, 10000000)"
       >创建一条换行消息</button>
       <button
         class="web-message-button"
@@ -34,7 +34,7 @@ import { WebMessage, MessageType, MessageDuration } from "web-message";
 // const messageInstance = new Message();
 // 单例模式无论在哪里引用都是同一个实例 节省内存开销
 const messageInstance = WebMessage.getInstance();
-const newLineMessage = "创建一条换行消息\n";
+const newLineMessage = `创建一条换行消息\n创建一条换行消息\n`;
 const defaultMessage = `创建一条默认消息`;
 const successMessage = "创建一条成功消息";
 const warningMessage = "创建一条警告消息";
