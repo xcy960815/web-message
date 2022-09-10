@@ -9,7 +9,6 @@ api-extractor.json
 rollup.config.js
 pnpm-lock.yaml
 shims-vue.d.ts
-
+pageckage-locak.json
 vue.config.js
-
 tsconfig.json

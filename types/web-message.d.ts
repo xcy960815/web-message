@@ -1,12 +1,31 @@
-export declare class Message {
+export declare type MessageDuration = number;
+
+export declare type messageHoverStop = boolean;
+
+export declare interface MessageOptions {
+    message: string;
+    messageType?: MessageType;
+    messagePosition?: MessagePosition;
+    messageDuration?: MessageDuration;
+    messageHoverStop?: messageHoverStop;
+    showClose?: showClose;
+}
+
+export declare type MessagePosition = 'left' | "center" | 'right' | undefined;
+
+export declare type MessageType = 'info' | 'warning' | 'error' | 'success' | undefined;
+
+export declare type showClose = boolean;
+
+export declare class WebMessage {
     private messageQueue;
     private bodyElement;
     private id;
     private maxZindex;
     private timeId;
-    static instance: Message;
+    static instance: WebMessage;
     constructor();
-    static getInstance(): Message;
+    static getInstance(): WebMessage;
     /**
      * @desc 获取当前页面最大z-index元素值
      * @returns {number}
@@ -79,20 +98,5 @@ export declare class Message {
      */
     private updateMessageQueue;
 }
-
-export declare type MessageDuration = number;
-
-export declare interface MessageOptions {
-    message: string;
-    messageType?: MessageType;
-    messagePosition?: MessagePosition;
-    messageDuration?: MessageDuration;
-    messageHoverStop?: boolean;
-    showClose?: boolean;
-}
-
-export declare type MessagePosition = 'left' | "center" | 'right' | undefined;
-
-export declare type MessageType = 'info' | 'warning' | 'error' | 'success' | undefined;
 
 export { }
