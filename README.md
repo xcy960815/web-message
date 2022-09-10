@@ -2,7 +2,7 @@
 > 一款仿照element-ui操作逻辑,用js开发的message组件,支持message组件在页面停留。
 
 #### 安装
-```shell
+```npm
 npm i web-message -S
 ```
 

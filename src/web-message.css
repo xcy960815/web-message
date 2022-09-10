@@ -1,27 +1,31 @@
 /* message组件样式 */
 .web-message {
     min-width: 380px;
-    border: 1px solid #ebeef5;
-    background-color: #edf2fc;
-    transform: translateX(-50%);
-    position: fixed;
-    left: 50%;
-    transition: opacity 0.4s, transform 0.4s, top 0.4s;
-    padding: 15px 15px 15px 20px;
+    max-width: 50%;
+    padding: 10px 20px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
-    border-radius: 4px;
     overflow: hidden;
+    border: 1px solid #ebeef5;
+    background-color: #edf2fc;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%);
+    transition: all 0.4s;
 }
 
+/* message组件入场动画 */
+.web-message-enter {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0%);
+}
+
+/* message组件出场动画 */
 .web-message-leave {
     opacity: 0;
-    transform: translate(-50%, -100%);
+    transform: translateX(-50%) translateY(-100%);
 }
-
-/* .web-message-hover:hover {
-    cursor: pointer;
-} */
 
 .web-message-left {
     justify-content: flex-start;
@@ -35,13 +39,16 @@
     justify-content: flex-end;
 }
 
+
+
 /* 消息内容节点 */
 .web-message .web-message-content {
     margin-left: 20px;
     margin: 0;
     padding: 0;
     font-size: 14px;
-    line-height: 1;
+    white-space: pre-line;
+    line-height: 1.5;
 }
 
 .web-message .close-button {
@@ -54,6 +61,8 @@
     height: 12px;
     background-size: 100% 100%;
 }
+
+
 
 .web-message-info .web-message-content {
     color: #909399;
