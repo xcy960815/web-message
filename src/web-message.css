@@ -14,29 +14,29 @@
     overflow: hidden;
 }
 
-.web-message_leave {
+.web-message-leave {
     opacity: 0;
     transform: translate(-50%, -100%);
 }
 
-/* .web-message_hover:hover {
+/* .web-message-hover:hover {
     cursor: pointer;
 } */
 
-.web-message_left {
+.web-message-left {
     justify-content: flex-start;
 }
 
-.web-message_center {
+.web-message-center {
     justify-content: center;
 }
 
-.web-message_right {
+.web-message-right {
     justify-content: flex-end;
 }
 
 /* 消息内容节点 */
-.web-message .web-message_content {
+.web-message .web-message-content {
     margin-left: 20px;
     margin: 0;
     padding: 0;
@@ -55,33 +55,33 @@
     background-size: 100% 100%;
 }
 
-.web-message_info .web-message_content {
+.web-message-info .web-message-content {
     color: #909399;
 }
 
-.web-message_success {
+.web-message-success {
     background-color: #f0f9eb;
     border-color: #e1f3d8;
 }
 
-.web-message_success .web-message_content {
+.web-message-success .web-message-content {
     color: #67c23c;
 }
 
-.web-message_warning {
+.web-message-warning {
     background-color: #fdf6ec;
     border-color: #faecd8;
 }
 
-.web-message_warning .web-message_content {
+.web-message-warning .web-message-content {
     color: #e6a23c;
 }
 
-.web-message_error {
+.web-message-error {
     background-color: #fef0f0;
     border-color: #fde2e2;
 }
 
-.web-message_error .web-message_content {
+.web-message-error .web-message-content {
     color: #f56c6c;
 }

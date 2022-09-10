@@ -3,14 +3,15 @@ import './web-message.css'
 export type MessageType = 'info' | 'warning' | 'error' | 'success' | undefined
 export type MessagePosition = 'left' | "center" | 'right' | undefined
 export type MessageDuration = number
+export type messageHoverStop = boolean
+export type showClose = boolean
 export interface MessageOptions {
     message: string;
     messageType?: MessageType
     messagePosition?: MessagePosition
     messageDuration?: MessageDuration
-    messageHoverStop?: boolean
-    showClose?: boolean;
-
+    messageHoverStop?: messageHoverStop
+    showClose?: showClose;
 }
 
 interface MessageQueueOption {
@@ -18,7 +19,7 @@ interface MessageQueueOption {
     id: number,
     // timeId: number,
 }
-export class Message {
+export class WebMessage {
     // 消息队列
     private messageQueue: Array<MessageQueueOption> = []
 
@@ -30,7 +31,7 @@ export class Message {
 
     private timeId: number = 0
 
-    static instance: Message
+    static instance: WebMessage
 
     constructor() {
         // 不使用 window.onload 会只查找 原生节点里面的 z-index
@@ -40,11 +41,11 @@ export class Message {
     }
 
     // 单例模式
-    static getInstance(): Message {
-        if (!Message.instance) {
-            Message.instance = new Message()
+    static getInstance(): WebMessage {
+        if (!WebMessage.instance) {
+            WebMessage.instance = new WebMessage()
         }
-        return Message.instance
+        return WebMessage.instance
     }
 
     /** 
@@ -112,7 +113,7 @@ export class Message {
 
         const messageContentDom = document.createElement('p')
 
-        messageContentDom.classList.add('web-message_content')
+        messageContentDom.classList.add('web-message-content')
 
         console.log("message", JSON.stringify(messageOption.message));
 
@@ -138,13 +139,13 @@ export class Message {
         messageboxDom.classList.add('web-message')
 
         // 动画class
-        messageboxDom.classList.add('web-message_leave')
+        messageboxDom.classList.add('web-message-leave')
 
         // message 内容 位置 class
-        messageboxDom.classList.add(`web-message_${messageOptions.messagePosition || "left"}`)
+        messageboxDom.classList.add(`web-message-${messageOptions.messagePosition || "left"}`)
 
         // message节点 样式 class
-        messageboxDom.classList.add(`web-message_${messageOptions.messageType ? messageOptions.messageType : 'info'}`)
+        messageboxDom.classList.add(`web-message-${messageOptions.messageType ? messageOptions.messageType : 'info'}`)
 
         // 创建 message 文本节点
         this.createMessageContentDom(messageboxDom, messageOptions)
@@ -157,7 +158,7 @@ export class Message {
 
         // 移除class 添加滑入动画
         window.setTimeout(() => {
-            messageboxDom.classList.remove('web-message_leave')
+            messageboxDom.classList.remove('web-message-leave')
         }, 100)
 
 
@@ -176,7 +177,7 @@ export class Message {
     private addEventForMessageDom(messageboxDom: HTMLDivElement, messageOptions: MessageOptions): void {
 
         // 给节点添加鼠标划入的事件
-        messageboxDom.addEventListener("mouseenter", (_event: MouseEvent) => {
+        messageboxDom.addEventListener("mouseenter", () => {
             // 获取当前message组件所对应的延时器id
             const timeId = Number(this.getDomAttribute(messageboxDom, "web-message-timeid"))
             // 清空默认添加的延时器
@@ -186,7 +187,7 @@ export class Message {
 
 
         // 给节点添加鼠标划出的事件
-        messageboxDom.addEventListener("mouseleave", (_event: MouseEvent) => {
+        messageboxDom.addEventListener("mouseleave", () => {
             const id = Number(this.getDomAttribute(messageboxDom, "web-message-id"))
             const currentMessageQueueIndex: number = this.messageQueue.findIndex((messageQueueOption: MessageQueueOption) => messageQueueOption.id === id)
             // 鼠标划出继续移除message节点
@@ -258,7 +259,7 @@ export class Message {
     private updateMessageDomStyle(messageboxDom: HTMLDivElement, startIndex: number): void {
 
         // 增加移除动画
-        messageboxDom.classList.add('web-message_leave')
+        messageboxDom.classList.add('web-message-leave')
         for (let index = startIndex; index < this.messageQueue.length; index++) {
             const messageQueueOption: MessageQueueOption = this.messageQueue[index]
             if (messageQueueOption) {

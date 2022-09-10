@@ -1,6 +1,6 @@
 {
     "name": "web-message",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "用js仿照element-ui创建的message组件,组件超级轻量.",
     "main": "dist/web-message.umd.js",
     "module": "dist/web-message.esm.js",
@@ -8,6 +8,7 @@
     "scripts": {
         "dev": "NODE_ENV=development rollup -c -w",
         "build": "NODE_ENV=production rollup -c && api-extractor run && rm -rf ./temp",
+        "build:ts": "api-extractor run && rm -rf ./temp",
         "link": "npm link && npm link web-message",
         "serve": "vue-cli-service serve"
     },
@@ -20,7 +21,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ChongYu-Yease/web-message.git"
+        "url": "git+https://github.com/xcy960815/web-message.git"
     },
     "author": {
         "name": "xuchongyu",
@@ -28,9 +29,9 @@
     },
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/ChongYu-Yease/web-message/issues"
+        "url": "https://github.com/xcy960815/web-message/issues"
     },
-    "homepage": "https://github.com/ChongYu-Yease/web-message#readme",
+    "homepage": "https://github.com/xcy960815/web-message#readme",
     "devDependencies": {
         "@babel/core": "^7.12.3",
         "@microsoft/api-extractor": "^7.28.3",
