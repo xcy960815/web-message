@@ -1,6 +1,6 @@
 {
     "name": "web-message",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "用js仿照element-ui创建的message组件,组件超级轻量.",
     "main": "dist/web-message.umd.js",
     "module": "dist/web-message.esm.js",
