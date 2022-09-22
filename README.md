@@ -3,12 +3,12 @@
 
 <p align="center"><font size="6">A simple web message system</font></p>
 
-[![npm](https://img.shields.io/npm/v/web-message.svg)](https://www.npmjs.com/package/web-message)
-[![npm](https://img.shields.io/npm/dm/web-message.svg)](https://www.npmjs.com/package/web-message)
-[![npm](https://img.shields.io/npm/l/web-message.svg)](https://www.npmjs.com/package/web-message)
+[![npm](https://img.shields.io/npm/v/web-message.svg)](https://github.com/xcy960815/web-message)
+[![npm](https://img.shields.io/npm/dm/web-message.svg)](https://github.com/xcy960815/web-message)
+[![npm](https://img.shields.io/npm/l/web-message.svg)](https://github.com/xcy960815/web-message)
 [![GitHub issues](https://img.shields.io/github/issues/xcy960815/web-message.svg)](https://github.com/xcy960815/web-message/issues)
-[![GitHub stars](https://img.shields.io/github/stars/xcy960815/web-message.svg?style=social&label=Stars)](https://img.shields.io/github/stars/xcy960815/web-message)
-[![GitHub forks](https://img.shields.io/github/forks/xcy960815/web-message.svg?style=social&label=Fork)](https://img.shields.io/github/stars/xcy960815/web-message)
+[![GitHub stars](https://img.shields.io/github/stars/xcy960815/web-message.svg?style=social&label=Stars)](https://github.com/xcy960815/web-message)
+[![GitHub forks](https://img.shields.io/github/forks/xcy960815/web-message.svg?style=social&label=Fork)](https://github.com/xcy960815/web-message)
 
 
 #### 安装
