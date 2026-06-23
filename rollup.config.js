@@ -1,59 +1,78 @@
-import typescript from 'rollup-plugin-typescript2'
-import {
-    terser
-} from 'rollup-plugin-terser'
-import autoprefixer from "autoprefixer"
-import postcss from 'rollup-plugin-postcss'
-import {
-    nodeResolve
-} from '@rollup/plugin-node-resolve' //将外部引入的js打包进来
-import babel from '@rollup/plugin-babel'
-import del from 'rollup-plugin-delete' //
-import commonjs from '@rollup/plugin-commonjs' //将CommonJS模块转换为ES6, 方便rollup直接调用
-import livereload from 'rollup-plugin-livereload'
+const path = require('path')
+const commonjs = require('@rollup/plugin-commonjs')
+const resolve = require('@rollup/plugin-node-resolve')
+const postcss = require('rollup-plugin-postcss')
+const typescript = require('@rollup/plugin-typescript')
+const { dts } = require('rollup-plugin-dts')
+const terser = require('@rollup/plugin-terser')
 
-const bundleSize = require('rollup-plugin-bundle-size');
-const isProduction = process.env.NODE_ENV === 'production'
+const input = path.resolve(__dirname, 'src/index.ts')
+const distDir = path.resolve(__dirname, 'dist')
+const typesDir = path.resolve(__dirname, 'types')
 
-export default {
-    input: './src/web-message.ts',
-    output: [{
-            format: 'umd',
-            file: 'dist/web-message.umd.js',
-            name: 'WebMessage',
+module.exports = [
+  {
+    input,
+    external: ['vue'],
+    output: [
+      {
+        file: path.join(distDir, 'web-message.es.js'),
+        format: 'es',
+        sourcemap: true,
+      },
+      {
+        file: path.join(distDir, 'web-message.common.js'),
+        format: 'cjs',
+        exports: 'named',
+        sourcemap: true,
+      },
+      {
+        file: path.join(distDir, 'web-message.umd.js'),
+        format: 'umd',
+        name: 'WebMessage',
+        globals: {
+          vue: 'Vue',
         },
-        {
-            format: 'es',
-            file: 'dist/web-message.esm.js',
+        sourcemap: true,
+      },
+      {
+        file: path.join(distDir, 'web-message.umd.min.js'),
+        format: 'umd',
+        name: 'WebMessage',
+        globals: {
+          vue: 'Vue',
         },
+        plugins: [terser()],
+        sourcemap: true,
+      },
     ],
     plugins: [
-        isProduction && terser(),
-        isProduction && del({
-            targets: ['dist']
-        }),
-        nodeResolve(),
-
-        commonjs({
-            include: 'node_modules/**',
-        }),
-
-        postcss({
-            plugins: [autoprefixer()],
-        }),
-
-        babel({
-            exclude: 'node_modules/**',
-            babelHelpers: "runtime"
-        }),
-        // 热更新
-        !isProduction && livereload("./src"),
-        typescript({
-            exclude: 'node_modules/**',
-            useTsconfigDeclarationDir: true,
-            extensions: ['.js', '.ts', '.tsx'],
-        }),
-
-        bundleSize()
+      resolve.nodeResolve({
+        extensions: ['.mjs', '.js', '.json', '.ts'],
+      }),
+      commonjs(),
+      postcss({
+        extract: path.join(distDir, 'web-message.css'),
+        minimize: true,
+      }),
+      typescript({
+        tsconfig: './tsconfig.rollup.json',
+      }),
     ],
-}
+  },
+  {
+    input,
+    output: [
+      {
+        file: path.join(typesDir, 'web-message.d.ts'),
+        format: 'es',
+      },
+    ],
+    external: [/\.css$/, 'vue'],
+    plugins: [
+      dts({
+        tsconfig: './tsconfig.rollup.json',
+      }),
+    ],
+  },
+]

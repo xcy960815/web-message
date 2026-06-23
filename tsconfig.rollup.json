@@ -2,11 +2,9 @@
   "compilerOptions": {
     "target": "es2015",
     "module": "es2015",
-    "declaration": true,
-    "declarationDir": "./temp",
     "rootDir": "./src",
     "strict": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
     "moduleResolution": "bundler",
@@ -15,5 +13,5 @@
     "experimentalDecorators": true,
     "lib": ["es2015", "dom"]
   },
-  "include": ["src/**/*.ts", "shims-vue.d.ts"]
+  "include": ["src/index.ts", "src/types.ts", "src/components/**/*.ts"]
 }
