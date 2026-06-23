@@ -8,10 +8,9 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'WebMessage',
-      formats: ['es', 'umd', 'cjs'],
+      formats: ['es', 'umd'],
       fileName: (format: string) => {
         if (format === 'es') return 'web-message.es.js'
-        if (format === 'cjs') return 'web-message.common.js'
         return 'web-message.umd.js'
       },
     },

@@ -1,0 +1,14 @@
+:root {
+  --vp-c-brand-1: #2f6fed;
+  --vp-c-brand-2: #2559bf;
+  --vp-c-brand-3: #1d468f;
+  --vp-home-hero-name-color: #243041;
+}
+
+.VPFeature {
+  border-radius: 8px;
+}
+
+.demo-doc-block {
+  margin-top: 24px;
+}
