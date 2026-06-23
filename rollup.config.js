@@ -1,3 +1,4 @@
+const fs = require('fs')
 const path = require('path')
 const commonjs = require('@rollup/plugin-commonjs')
 const resolve = require('@rollup/plugin-node-resolve')
@@ -10,6 +11,11 @@ const input = path.resolve(__dirname, 'src/index.ts')
 const distDir = path.resolve(__dirname, 'dist')
 const typesDir = path.resolve(__dirname, 'types')
 
+fs.rmSync(distDir, { recursive: true, force: true })
+fs.rmSync(typesDir, { recursive: true, force: true })
+fs.mkdirSync(distDir, { recursive: true })
+fs.mkdirSync(typesDir, { recursive: true })
+
 module.exports = [
   {
     input,
@@ -18,13 +24,6 @@ module.exports = [
       {
         file: path.join(distDir, 'web-message.es.js'),
         format: 'es',
-        sourcemap: true,
-      },
-      {
-        file: path.join(distDir, 'web-message.common.js'),
-        format: 'cjs',
-        exports: 'named',
-        sourcemap: true,
       },
       {
         file: path.join(distDir, 'web-message.umd.js'),
@@ -33,7 +32,6 @@ module.exports = [
         globals: {
           vue: 'Vue',
         },
-        sourcemap: true,
       },
       {
         file: path.join(distDir, 'web-message.umd.min.js'),
@@ -43,7 +41,6 @@ module.exports = [
           vue: 'Vue',
         },
         plugins: [terser()],
-        sourcemap: true,
       },
     ],
     plugins: [

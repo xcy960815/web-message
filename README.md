@@ -2,12 +2,13 @@
 
 [中文文档](./README.zh-CN.md)
 
-`web-message` is a lightweight web message/toast library with a plain JavaScript usage API.
+`web-message` is a lightweight browser-side message/toast library with a plain JavaScript usage API.
 
 It does not require your application itself to be written in Vue, but the package uses Vue 3 internally as its rendering runtime. In practice, that means:
 
 - You can call it from plain JavaScript, TypeScript, Vue, React, or other browser-based projects.
 - Your project must have `vue@^3.2.13` available, because it is a runtime peer dependency.
+- It is not intended to run directly in a pure Node.js runtime.
 
 ## Features
 
@@ -121,9 +122,22 @@ import type { MessageOption } from 'web-message'
 ## Notes
 
 - This package is intended for browser usage.
+- It cannot display messages in a pure Node.js runtime because it depends on `window`, `document`, DOM mounting, and browser events.
+- In SSR applications, import is usually fine, but `createMessage()` should only be called on the client side.
 - The stylesheet is shipped separately and should be imported explicitly.
 - Multiple messages with different heights are reflowed automatically.
 - `messageDuration: 0` creates a sticky message that must be closed manually if `showClose` is enabled.
+
+## Build Artifacts
+
+The published package currently includes:
+
+- `dist/web-message.es.js`: ESM build for modern bundlers
+- `dist/web-message.umd.js`: UMD build for script-tag or legacy integration
+- `dist/web-message.umd.min.js`: minified UMD build
+- `dist/web-message.css`: stylesheet
+
+Source maps and CommonJS output are intentionally not published.
 
 ## Development
 

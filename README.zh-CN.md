@@ -2,12 +2,13 @@
 
 [English README](./README.md)
 
-`web-message` 是一个轻量级的 Web 消息提示库，对外提供的是普通 JavaScript API。
+`web-message` 是一个轻量级的浏览器端消息提示库，对外提供的是普通 JavaScript API。
 
 它并不要求你的业务项目本身必须使用 Vue 开发，但当前包内部使用了 Vue 3 作为渲染运行时。所以准确地说：
 
 - 你可以在普通 JavaScript、TypeScript、Vue、React，或者其他浏览器项目里调用它
 - 你的项目运行时需要提供 `vue@^3.2.13`，因为这是它的 `peerDependencies`
+- 它不适合在纯 Node.js 运行时里直接执行
 
 ## 功能特性
 
@@ -119,9 +120,22 @@ import type { MessageOption } from 'web-message'
 ## 使用说明
 
 - 这是一个浏览器端消息提示库，不适用于 Node.js 服务端环境
+- 它依赖 `window`、`document`、DOM 挂载和浏览器事件，因此不能在纯 Node.js 运行时里直接显示消息
+- 如果你在 SSR 项目里使用，`createMessage()` 应该只在客户端执行
 - 样式文件是单独产物，需要手动引入
 - 多条不同高度的消息会自动重排，避免遮挡
 - `messageDuration: 0` 会创建常驻消息，建议同时配合 `showClose: true`
+
+## 构建产物说明
+
+当前发布包里包含这些产物：
+
+- `dist/web-message.es.js`：给现代 bundler 用的 ESM 版本
+- `dist/web-message.umd.js`：给 script 标签或传统接入方式用的 UMD 版本
+- `dist/web-message.umd.min.js`：压缩后的 UMD 版本
+- `dist/web-message.css`：样式文件
+
+源码映射文件和 CommonJS 构建产物都不会进入最终发布包。
 
 ## 本地开发
 

@@ -4,7 +4,7 @@
     "module": "es2015",
     "rootDir": "./src",
     "strict": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "noImplicitAny": false,
     "skipLibCheck": true,
     "moduleResolution": "bundler",
