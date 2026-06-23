@@ -2,6 +2,9 @@
 
 [English README](./README.md)
 
+- 文档地址：[https://xcy960815.github.io/web-message/](https://xcy960815.github.io/web-message/)
+- 在线 Demo：[https://xcy960815.github.io/web-message/guide/demo](https://xcy960815.github.io/web-message/guide/demo)
+
 `web-message` 是一个轻量级的浏览器端消息提示库，对外提供的是普通 JavaScript API。
 
 它并不要求你的业务项目本身必须使用 Vue 开发，但当前包内部使用了 Vue 3 作为渲染运行时。所以准确地说：

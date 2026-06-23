@@ -2,6 +2,9 @@
 
 [中文文档](./README.zh-CN.md)
 
+- Documentation: [https://xcy960815.github.io/web-message/](https://xcy960815.github.io/web-message/)
+- Online Demo: [https://xcy960815.github.io/web-message/guide/demo](https://xcy960815.github.io/web-message/guide/demo)
+
 `web-message` is a lightweight browser-side message/toast library with a plain JavaScript usage API.
 
 It does not require your application itself to be written in Vue, but the package uses Vue 3 internally as its rendering runtime. In practice, that means:
