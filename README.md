@@ -1,5 +1,10 @@
 # web-message
 
+[![npm version](https://img.shields.io/npm/v/web-message.svg)](https://www.npmjs.com/package/web-message)
+[![npm downloads](https://img.shields.io/npm/dm/web-message.svg)](https://www.npmjs.com/package/web-message)
+[![CI](https://img.shields.io/badge/CI-passing-brightgreen.svg)](https://github.com/xcy960815/web-message/actions)
+[![license](https://img.shields.io/npm/l/web-message.svg)](https://github.com/xcy960815/web-message/blob/master/LICENSE)
+
 [中文文档](./README.zh-CN.md)
 
 - Documentation: [https://xcy960815.github.io/web-message/](https://xcy960815.github.io/web-message/)
